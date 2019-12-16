@@ -1,9 +1,8 @@
 package com.it.leetcode.twenties;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import sun.security.util.Length;
+
+import java.util.*;
 
 /**
  * @Description: TODO
@@ -31,9 +30,15 @@ public class Twenty {
 //        list.add(2);
 //        List<Integer> integers = removeElement1(list, 2);
 //        System.out.println(integers);
-        int[] nums = new int[]{1,2,3,4,5};
+        int[] nums = new int[]{1,2,3,4,5,6,7};
 //        System.out.println(maxProfit(nums));
-        System.out.println(maxProfit1(nums));
+//        System.out.println(maxProfit1(nums));
+//        rotate(nums,3);
+        boolean b = containsDuplicate1(nums);
+        System.out.println(b);
+//        for (int i = 0; i < nums.length; i++) {
+//            System.out.print(nums[i] + " ");
+//        }
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -112,5 +117,37 @@ public class Twenty {
         }
         return profit;
     }
+    //189.旋转数组  给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
+    public static void rotate(int[] nums, int k) {
+        for (int i = 0; i < k; i++) {
+            int tmp = nums[nums.length-1];
+            for (int j = nums.length-1; j > 0 ; j--) {
+                nums[j] = nums[j-1];
+            }
+            nums[0] = tmp;
+        }
+    }
+    //217 存在重复元素
+    public static boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int x : nums) {
+            if(set.contains(x)) return true;
+            set.add(x);
+        }
+        return false;
 
+       /* for (int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
+        }
+        return !(nums.length == set.size());*/
+    }
+
+    //217 存在重复元素
+    public static boolean containsDuplicate1(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length-1; i++) {
+            if(nums[i]==nums[i+1]) return true;
+        }
+        return false;
+    }
 }
