@@ -7,7 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class LeetcodeApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void xorTest() {
+        int a = 13;
+        int b = 13;
+        System.out.println(a^b);
     }
 
 }

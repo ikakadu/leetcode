@@ -1,5 +1,6 @@
 package com.it.leetcode.twenties;
 
+import org.junit.Test;
 import sun.security.util.Length;
 
 import java.util.*;
@@ -30,15 +31,19 @@ public class Twenty {
 //        list.add(2);
 //        List<Integer> integers = removeElement1(list, 2);
 //        System.out.println(integers);
-        int[] nums = new int[]{1,2,3,4,5,6,7};
+//        int[] nums = new int[]{1,2,3,4,5,6,7};
+        int[] nums = new int[]{4,1,2,1,2};
 //        System.out.println(maxProfit(nums));
 //        System.out.println(maxProfit1(nums));
 //        rotate(nums,3);
-        boolean b = containsDuplicate1(nums);
-        System.out.println(b);
+//        boolean b = containsDuplicate1(nums);
+//        System.out.println(b);
 //        for (int i = 0; i < nums.length; i++) {
 //            System.out.print(nums[i] + " ");
 //        }
+
+        int i = singleNumber1(nums);
+        System.out.println(i);
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -150,4 +155,40 @@ public class Twenty {
         }
         return false;
     }
+
+    //136 只出现一次的数字
+    public static int singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int res=0;
+        if (nums.length==1) res = nums[0];
+        for (int i = 0; i < nums.length; i+=2) {
+
+            if (i<nums.length-1&&nums[i] != nums[i+1]){
+                res = nums[i];
+                break;
+            }else {
+                res = nums[nums.length-1];
+            }
+        }
+        return res;
+    }
+
+    //136 只出现一次的数字 异或算法
+
+    public static int singleNumber1(int[] nums) {
+        int res = 0;
+        for (int x:nums) {
+            res ^= x;
+        }
+        return res;
+    }
+
+
+
+
+
+
+
+
+
 }
