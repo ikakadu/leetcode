@@ -1,7 +1,4 @@
-package com.it.leetcode.twenties;
-
-import org.junit.Test;
-import sun.security.util.Length;
+package com.it.leetcode.explore;
 
 import java.util.*;
 
@@ -10,7 +7,7 @@ import java.util.*;
  * @Author: wangruitao
  * @DATE: 2019/11/22
  **/
-public class Twenty {
+public class ArrayEasy {
 
     public static void main(String[] args) {
 //        int[] nums = new int[]{0,1,2,2,3,0,4,2};
@@ -183,8 +180,24 @@ public class Twenty {
         return res;
     }
 
+    //两个数组的交集 II
+    public int[] intersect(int[] nums1, int[] nums2) {
 
-
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                if (nums1[i]==nums2[j]){
+                    list.add(nums1[i]);
+                    continue;
+                }
+            }
+        }
+        int[] res = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            res[i]=list.get(i);
+        }
+        return res;
+    }
 
 
 
