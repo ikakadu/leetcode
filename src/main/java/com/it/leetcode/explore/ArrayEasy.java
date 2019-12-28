@@ -1,5 +1,7 @@
 package com.it.leetcode.explore;
 
+import org.junit.Test;
+
 import java.util.*;
 
 /**
@@ -39,8 +41,20 @@ public class ArrayEasy {
 //            System.out.print(nums[i] + " ");
 //        }
 
-        int i = singleNumber1(nums);
-        System.out.println(i);
+//        int[] nums1 = new int[]{1,2,2,1};
+//        int[] nums2 = new int[]{2};
+//        int[] intersect = intersect(nums1, nums2);
+//        for (int i = 0; i < intersect.length; i++) {
+//            System.out.print(intersect[i] +" ");
+//        }
+
+//        int i = singleNumber1(nums);
+//        System.out.println(i);
+
+        int[] ints = plusOne1(new int[]{1,2,3,4});
+        for (int i = 0; i < ints.length; i++) {
+            System.out.println(ints[i]);
+        }
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -181,14 +195,16 @@ public class ArrayEasy {
     }
 
     //两个数组的交集 II
-    public int[] intersect(int[] nums1, int[] nums2) {
-
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        int no = 1;
+        int min = nums1.length>nums2.length?nums2.length:nums1.length;
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < nums1.length; i++) {
             for (int j = 0; j < nums2.length; j++) {
-                if (nums1[i]==nums2[j]){
+                if (nums1[i]==nums2[j]&&no<=min){
                     list.add(nums1[i]);
-                    continue;
+                    no++;
+                    break;
                 }
             }
         }
@@ -199,8 +215,64 @@ public class ArrayEasy {
         return res;
     }
 
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                if (nums1[i]==nums2[j]){
+                    set.add(nums1[i]);
+
+                    break;
+                }
+            }
+        }
+
+        int[] res = new int[set.size()];
+        int i=0;
+        Iterator<Integer> iterator = set.iterator();
+        while(iterator.hasNext()){
+            res[i] = iterator.next();
+            i++;
+        }
 
 
+        return res;
+
+    }
+
+    //66  加一
+    public static int[] plusOne(int[] digits) {
+
+        int carry = 0;
+        for (int i = digits.length-1; i >=0; i--) {
+            if(i==digits.length-1){
+                carry = (digits[i]+1)/10;
+                digits[i] = (digits[i]+1)%10;
+            }else {
+                int temp = digits[i];
+                digits[i] = (temp+carry)%10;
+                carry = (temp+carry)/10;
+            }
+        }
+        if(carry==1) {
+            int[] ints = new int[digits.length + 1];
+            ints[0]=1;
+            return ints;
+        }
+        return digits;
+    }
+    //66  加一   推荐
+    public static int[] plusOne1(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] = digits[i] % 10;
+            if (digits[i] != 0) return digits;
+        }
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
 
 
 
