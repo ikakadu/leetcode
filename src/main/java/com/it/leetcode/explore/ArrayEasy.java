@@ -31,7 +31,6 @@ public class ArrayEasy {
 //        List<Integer> integers = removeElement1(list, 2);
 //        System.out.println(integers);
 //        int[] nums = new int[]{1,2,3,4,5,6,7};
-        int[] nums = new int[]{4,1,2,1,2};
 //        System.out.println(maxProfit(nums));
 //        System.out.println(maxProfit1(nums));
 //        rotate(nums,3);
@@ -51,10 +50,13 @@ public class ArrayEasy {
 //        int i = singleNumber1(nums);
 //        System.out.println(i);
 
-        int[] ints = plusOne1(new int[]{1,2,3,4});
-        for (int i = 0; i < ints.length; i++) {
-            System.out.println(ints[i]);
+//        int[] ints = plusOne1(new int[]{1,2,3,4});
+        int[] nums = new int[]{0,0,1,0,2};
+        moveZeroes(nums);
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println(nums[i]);
         }
+
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -274,6 +276,37 @@ public class ArrayEasy {
         return digits;
     }
 
+    //  移动零
+    //思路：设置一个index，表示非0数的个数，循环遍历数组，
+    // 如果不是0，将非0值移动到第index位置,然后index + 1
+    //遍历结束之后，index值表示为非0的个数，再次遍历，从index位置后的位置此时都应该为0
+    public  static void moveZeroes(int[] nums) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(0 != nums[i]){
+                nums[index] = nums[i];
+                index++;
+            }
+        }
 
+        for (int i = index; i < nums.length; i++) {
+            nums[i] =0;
+        }
+    }
+
+    public static  void move(int[] nums,int beginIndex,int endIndex) {
+        for (int i = beginIndex; i < endIndex-1; i++) {
+            if(0==nums[i+1]);
+            nums[i]  = nums[i]^nums[i+1];
+            nums[i+1] = nums[i]^nums[i+1];
+            nums[i] = nums[i]^nums[i+1];
+        }
+    }
+
+    public static void swap(int x,int y){
+        x = x ^ y;
+        y = x ^ y;
+        x = x ^ y;
+    }
 
 }
