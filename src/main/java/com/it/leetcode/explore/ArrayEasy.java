@@ -51,10 +51,14 @@ public class ArrayEasy {
 //        System.out.println(i);
 
 //        int[] ints = plusOne1(new int[]{1,2,3,4});
-        int[] nums = new int[]{0,0,1,0,2};
-        moveZeroes(nums);
-        for (int i = 0; i < nums.length; i++) {
-            System.out.println(nums[i]);
+//        int[] nums = new int[]{0,0,1,0,2};
+//        moveZeroes1(nums);
+
+
+        int[] nums = new int[]{2, 7, 11, 15};
+        int[] ints = twoSum(nums, 9);
+        for (int i = 0; i < ints.length; i++) {
+            System.out.println(ints[i]);
         }
 
     }
@@ -294,6 +298,15 @@ public class ArrayEasy {
         }
     }
 
+    public static void moveZeroes1(int[] nums){
+        for (int lastNonZeroFoundAt = 0, cur = 0; cur < nums.length; cur++) {
+            if (nums[cur] != 0) {
+                swap(nums[lastNonZeroFoundAt++], nums[cur]);
+            }
+        }
+
+    }
+
     public static  void move(int[] nums,int beginIndex,int endIndex) {
         for (int i = beginIndex; i < endIndex-1; i++) {
             if(0==nums[i+1]);
@@ -307,6 +320,20 @@ public class ArrayEasy {
         x = x ^ y;
         y = x ^ y;
         x = x ^ y;
+    }
+
+    //两数之和
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int c = target - nums[i];
+            if(map.containsKey(c)){
+                return new int[]{i,map.get(c)};
+            }
+            map.put(nums[i],i);
+
+        }
+        throw new IllegalArgumentException("No two sum solution");
     }
 
 }
