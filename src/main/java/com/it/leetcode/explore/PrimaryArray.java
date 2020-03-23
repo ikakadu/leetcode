@@ -5,11 +5,11 @@ package com.it.leetcode.explore;
 import java.util.*;
 
 /**
- * @Description: TODO
+ * @Description: 初级算法  数组
  * @Author: wangruitao
  * @DATE: 2019/11/22
  **/
-public class ArrayEasy {
+public class PrimaryArray {
 
     public static void main(String[] args) {
 //        int[] nums = new int[]{0,1,2,2,3,0,4,2};
