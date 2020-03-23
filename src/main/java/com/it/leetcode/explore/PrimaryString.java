@@ -37,9 +37,13 @@ public class PrimaryString {
             int j = n - 1 - i;
 
 
-            s[j] = (char) (s[j] ^s[i]);
-            s[i] = (char) (s[i] ^s[j]);
-            s[j] = (char) (s[j] ^s[i]);
+//            s[j] = (char) (s[j] ^s[i]);
+//            s[i] = (char) (s[i] ^s[j]);
+//            s[j] = (char) (s[j] ^s[i]);
+
+            s[i] ^= s[j];
+            s[j] ^= s[i];
+            s[i] ^= s[j];
         }
     }
 }
