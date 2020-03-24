@@ -2,6 +2,10 @@ package com.it.leetcode;
 
 import com.it.leetcode.explore.MchtCenEnum;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static com.it.leetcode.explore.MchtCenEnum.MchtInfEntityType;
 
 /**
@@ -24,4 +28,31 @@ public class Test {
         String infEnterprise = MchtCenEnum.findNameByValue(MchtInfEntityType, "InfEnterprise").getName();
         System.out.println(infEnterprise);
     }
-}
+
+    @org.junit.Test
+    public void move(){
+            if (964632435 *10 > Integer.MAX_VALUE){
+                System.out.println("max");
+            }
+            System.out.println(1<<31-1);
+            System.out.println(-1<<31);
+            System.out.println(Integer.MAX_VALUE);
+            System.out.println(Integer.MIN_VALUE);
+
+        }
+        @org.junit.Test
+        public void forMap(){
+            LinkedHashMap<Character,Integer> map  = new LinkedHashMap();
+            map.put('b',2);
+            map.put('a',1);
+            map.put('c',3);
+            map.put('d',4);
+            map.put('e',5);
+            Iterator<Map.Entry<Character, Integer>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()){
+                System.out.println(iterator.next().getValue());
+            }
+        }
+    }
+
+
