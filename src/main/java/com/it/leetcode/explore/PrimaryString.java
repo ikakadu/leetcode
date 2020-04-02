@@ -1,5 +1,8 @@
 package com.it.leetcode.explore;
 
+
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,8 +22,10 @@ public class PrimaryString {
         }*/
 
 //        System.out.println(reverse(-123));
-        System.out.println(firstUniqChar("loveleetcode"));
+//        System.out.println(firstUniqChar("loveleetcode"));
 
+
+        System.out.println(myAtoi("qq-1232qqq"));
     }
 
     //反转字符串  使用异或
@@ -100,4 +105,65 @@ public class PrimaryString {
         }
         return -1;
     }
+
+    //有效的字母异位词
+    /*public boolean isAnagram(String s, String t) {
+        int i, x[26] = { 0 }, y[26] = { 0 };
+        for (i = 0; s[i] != '\0'; i++)	x[s[i] - 'a']++;	//建立 s 的字符表 x
+        for (i = 0; t[i] != '\0'; i++)	y[t[i] - 'a']++;	//建立 t 的字符表 y
+        for (i = 0; i < 26; i++)							//比较两字符表是否相同
+            if (x[i] != y[i])	return false;
+        return true;
+    }*/
+
+    public static int myAtoi(String str) {
+        int len = str.length();
+        int index = 0;
+        while (index < len){
+            //去除前面的空格
+            if (str.charAt(index) != ' '){
+                break;
+            }
+            index++;
+        }
+        if (index == len){
+            return 0;
+        }
+
+        int sign = 1;
+        char firstChar = str.charAt(index);
+        if (firstChar == '+'){
+            index++;
+            sign =1;
+        }else if (firstChar == '-'){
+            index++;
+            sign = -1;
+        }
+
+        int res = 0;
+        while (index < len){
+            char currChar = str.charAt(index);
+            if (currChar > '9' || currChar < '0'){
+                break;
+            }
+            if (res>Integer.MAX_VALUE/10 || (res ==Integer.MAX_VALUE/10 && (currChar - '0') > Integer.MAX_VALUE % 10)){
+                return Integer.MAX_VALUE;
+            }
+            if (res<Integer.MIN_VALUE/10 || (res ==Integer.MIN_VALUE/10 && (currChar - '0') > -(Integer.MIN_VALUE % 10))){
+                return Integer.MIN_VALUE;
+            }
+
+            res = res * 10 + sign * (currChar - '0');
+            index++;
+        }
+        return res;
+
+    }
+
+
+
+
+
+
+
 }
