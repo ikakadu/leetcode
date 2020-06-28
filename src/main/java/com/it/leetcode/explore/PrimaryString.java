@@ -116,6 +116,11 @@ public class PrimaryString {
         return true;
     }*/
 
+    /**
+     * 字符串转换整数
+     * @param str
+     * @return
+     */
     public static int myAtoi(String str) {
         int len = str.length();
         int index = 0;
