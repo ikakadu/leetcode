@@ -5,11 +5,11 @@ package com.it.leetcode.explore;
 import java.util.*;
 
 /**
- * @Description: TODO
+ * @Description: 初级算法  数组
  * @Author: wangruitao
  * @DATE: 2019/11/22
  **/
-public class ArrayEasy {
+public class PrimaryArray {
 
     public static void main(String[] args) {
 //        int[] nums = new int[]{0,1,2,2,3,0,4,2};
@@ -31,7 +31,6 @@ public class ArrayEasy {
 //        List<Integer> integers = removeElement1(list, 2);
 //        System.out.println(integers);
 //        int[] nums = new int[]{1,2,3,4,5,6,7};
-        int[] nums = new int[]{4,1,2,1,2};
 //        System.out.println(maxProfit(nums));
 //        System.out.println(maxProfit1(nums));
 //        rotate(nums,3);
@@ -51,10 +50,19 @@ public class ArrayEasy {
 //        int i = singleNumber1(nums);
 //        System.out.println(i);
 
-        int[] ints = plusOne1(new int[]{1,2,3,4});
-        for (int i = 0; i < ints.length; i++) {
-            System.out.println(ints[i]);
-        }
+//        int[] ints = plusOne1(new int[]{1,2,3,4});
+//        int[] nums = new int[]{0,0,1,0,2};
+//        moveZeroes1(nums);
+
+
+//        int[] nums = new int[]{2, 7, 11, 15};
+//        int[] ints = twoSum(nums, 9);
+//        for (int i = 0; i < ints.length; i++) {
+//            System.out.println(ints[i]);
+//        }
+
+        rotate(null);
+
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -194,20 +202,6 @@ public class ArrayEasy {
         return res;
     }
 
-    //136 只出现一次的数字
-    public int singleNumber2(int[] nums) {
-        HashSet<Integer> set = new HashSet<Integer>();
-        for (int i = 0; i < nums.length; i++) {
-
-            if (set.add(nums[i])){
-
-            }else {
-                set.remove(nums[i]);
-            }
-        }
-        return set.iterator().next();
-    }
-
     //两个数组的交集 II
     public static int[] intersect(int[] nums1, int[] nums2) {
         int no = 1;
@@ -288,7 +282,80 @@ public class ArrayEasy {
         return digits;
     }
 
+    //  移动零
+    //思路：设置一个index，表示非0数的个数，循环遍历数组，
+    // 如果不是0，将非0值移动到第index位置,然后index + 1
+    //遍历结束之后，index值表示为非0的个数，再次遍历，从index位置后的位置此时都应该为0
+    public  static void moveZeroes(int[] nums) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(0 != nums[i]){
+                nums[index] = nums[i];
+                index++;
+            }
+        }
 
+        for (int i = index; i < nums.length; i++) {
+            nums[i] =0;
+        }
+    }
+
+    public static void moveZeroes1(int[] nums){
+        for (int lastNonZeroFoundAt = 0, cur = 0; cur < nums.length; cur++) {
+            if (nums[cur] != 0) {
+                swap(nums[lastNonZeroFoundAt++], nums[cur]);
+            }
+        }
+
+    }
+
+    public static  void move(int[] nums,int beginIndex,int endIndex) {
+        for (int i = beginIndex; i < endIndex-1; i++) {
+            if(0==nums[i+1]);
+            nums[i]  = nums[i]^nums[i+1];
+            nums[i+1] = nums[i]^nums[i+1];
+            nums[i] = nums[i]^nums[i+1];
+        }
+    }
+
+    public static void swap(int x,int y){
+        x = x ^ y;
+        y = x ^ y;
+        x = x ^ y;
+    }
+
+    //两数之和
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int c = target - nums[i];
+            if(map.containsKey(c)){
+                return new int[]{i,map.get(c)};
+            }
+            map.put(nums[i],i);
+
+        }
+        throw new IllegalArgumentException("No two sum solution");
+    }
+
+    //旋转图像
+
+    public static void rotate(int[][] matrix) {
+        int[][] arr = {
+                {1,2,3,10},
+                {4,5,6,20},
+                {7,8,9,30}
+        };
+
+        System.out.println(arr.length);
+        System.out.println(arr[0].length);
+        int[][] arr2 = new int[arr[0].length][arr.length];
+        for (int i = 0; i < arr.length; i++) {
+
+        }
+
+
+    }
 
 
 
