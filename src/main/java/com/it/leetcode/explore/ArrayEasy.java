@@ -194,6 +194,20 @@ public class ArrayEasy {
         return res;
     }
 
+    //136 只出现一次的数字
+    public int singleNumber2(int[] nums) {
+        HashSet<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < nums.length; i++) {
+
+            if (set.add(nums[i])){
+
+            }else {
+                set.remove(nums[i]);
+            }
+        }
+        return set.iterator().next();
+    }
+
     //两个数组的交集 II
     public static int[] intersect(int[] nums1, int[] nums2) {
         int no = 1;
@@ -273,6 +287,8 @@ public class ArrayEasy {
         digits[0] = 1;
         return digits;
     }
+
+
 
 
 
