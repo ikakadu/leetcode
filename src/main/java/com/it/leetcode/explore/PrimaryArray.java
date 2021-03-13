@@ -68,8 +68,8 @@ public class PrimaryArray {
 //        boolean res = isPalindrome2(1234321);
 
 //        int res = romanToInt("MIX");
-        String res = longestCommonPrefix(new String[]{"flower", "flow", "flight"});
-
+//        String res = longestCommonPrefix(new String[]{"flower", "flow", "flight"});
+        String res = intToRoman(58);
         System.out.println(res);
     }
     //第27题   双指针法
@@ -569,6 +569,85 @@ public class PrimaryArray {
             case 'f': return 900;
         }
         return 0;
+    }
+
+    //12. 整数转罗马数字
+    public static String intToRoman(int num) {
+//        I             1
+//        V             5
+//        X             10
+//        L             50
+//        C             100
+//        D             500
+//        M             1000
+        String res = "";
+        while (num/1000>0){
+            res+="M";
+            num-=1000;
+        }
+        while (num/900==1){
+            res+="CM";
+            num-=900;
+        }
+        while (num/500==1){
+            res+="D";
+            num-=500;
+        }
+        while (num/400==1){
+            res+="CD";
+            num-=400;
+        }
+        while (num/100>0){
+            res+="C";
+            num-=100;
+        }
+        while (num/90==1){
+            res+="XC";
+            num-=90;
+        }
+        while (num/50==1){
+            res+="L";
+            num-=50;
+        }
+        while (num/40==1){
+            res+="XL";
+            num-=40;
+        }
+        while (num/10>0){
+            res+="X";
+            num-=10;
+        }
+        while (num/9==1){
+            res+="IX";
+            num-=9;
+        }
+        while (num/5==1){
+            res+="V";
+            num-=5;
+        }
+        while (num/4==1){
+            res+="IV";
+            num-=4;
+        }
+        while (num/1>0){
+            res+="I";
+            num-=1;
+        }
+        return res;
+    }
+    //改进版
+    public static String intToRoman2(int num) {
+        int values[]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        String reps[]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+
+        String res = "";
+        for(int i=0; i<13; i++){
+            while(num>=values[i]){
+                num -= values[i];
+                res += reps[i];
+            }
+        }
+        return res;
     }
 
     //14. 最长公共前缀
