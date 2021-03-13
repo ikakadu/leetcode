@@ -4,6 +4,8 @@ package com.it.leetcode.explore;
 
 import java.util.*;
 
+import static javafx.scene.input.KeyCode.M;
+
 /**
  * @Description: 初级算法  数组
  * @Author: wangruitao
@@ -61,8 +63,14 @@ public class PrimaryArray {
 //            System.out.println(ints[i]);
 //        }
 
-        rotate(null);
+//        rotate(null);
 
+//        boolean res = isPalindrome2(1234321);
+
+//        int res = romanToInt("MIX");
+        String res = longestCommonPrefix(new String[]{"flower", "flow", "flight"});
+
+        System.out.println(res);
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -370,6 +378,236 @@ public class PrimaryArray {
 
     }
 
+    //9. 回文数
+    public static boolean isPalindrome(int x) {
+        char[] chars = (x+"").toCharArray();
+        for (int i = 0; i < chars.length/2; i++) {
+            if (chars[i]!=chars[chars.length-1-i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome2(int x) {
+
+        if (x == 0) return true;
+        if (x < 0 || x % 10 == 0) return false;
+        int reversed = 0;
+        while (x > reversed) {
+            reversed = reversed * 10 + x % 10;
+            x /= 10;
+        }
+        return x == reversed || x == reversed / 10;
+    }
+
+    public boolean isPalindrome3(int x) {
+        if(x < 0)
+            return false;
+        int cur = 0;
+        int num = x;
+        while(num != 0) {
+            cur = cur * 10 + num % 10;
+            num /= 10;
+        }
+        return cur == x;
+    }
+
+    //13. 罗马数字转整数
+    public static int romanToInt(String s) {
+
+        int res = 0;
+        char[] chars = s.toCharArray();
+        int index = 0;
+        while (index<chars.length){
+            switch (chars[index]) {
+                case 'I' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='V'){
+                            res += 4;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='X'){
+                            res += 9;
+                            index++;
+                        }else
+                            res +=1;
+                    }
+                };break;
+
+
+                case 'V' : res += 5; break;
+                case 'X' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='L'){
+                            res += 40;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='C'){
+                            res += 90;
+                            index++;
+                        }else
+                            res += 10;
+                    }
+                };break;
+
+
+                case 'L' : res +=50; break;
+
+                case 'C' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='D'){
+                            res += 400;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='M'){
+                            res += 900;
+                            index++;
+                        }else
+                            res += 100;
+                    }
+                };break;
+
+                case 'D' : res += 500; break;
+
+                case 'M' : res += 1000; break;
+            }
+            index ++;
+        }
+        return res;
+    }
+
+    public static int romanToInt2(String s) {
+
+        int res = 0;
+        char[] chars = s.toCharArray();
+        int index = 0;
+        while (index<chars.length){
+            switch (chars[index]) {
+                case 'I' : res += (chars[index]=='V'||chars[index]=='X')?-1:1;break;
+
+
+                /*case 'I' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='V'){
+                            res += 4;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='X'){
+                            res += 9;
+                            index++;
+                        }else
+                            res +=1;
+                    }
+                };break;*/
+
+
+                case 'V' : res += 5; break;
+                case 'X' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='L'){
+                            res += 40;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='C'){
+                            res += 90;
+                            index++;
+                        }else
+                            res += 10;
+                    }
+                };break;
+
+
+                case 'L' : res +=50; break;
+
+                case 'C' : {
+                    if (index < chars.length){
+                        if (index!=chars.length-1&&chars[index+1]=='D'){
+                            res += 400;
+                            index++;
+                        }else if (index!=chars.length-1&&chars[index+1]=='M'){
+                            res += 900;
+                            index++;
+                        }else
+                            res += 100;
+                    }
+                };break;
+
+                case 'D' : res += 500; break;
+
+                case 'M' : res += 1000; break;
+            }
+//            index ++;
+        }
+        return res;
+    }
+
+    public static int romanToInt3(String s){
+        s = s.replace("IV","a");
+        s = s.replace("IX","b");
+        s = s.replace("XL","c");
+        s = s.replace("XC","d");
+        s = s.replace("CD","e");
+        s = s.replace("CM","f");
+
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            res += getValue(s.charAt(i));
+        }
+        return res;
+    }
+
+    public static int getValue(char c) {
+        switch(c) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            case 'a': return 4;
+            case 'b': return 9;
+            case 'c': return 40;
+            case 'd': return 90;
+            case 'e': return 400;
+            case 'f': return 900;
+        }
+        return 0;
+    }
+
+    //14. 最长公共前缀
+    public static String longestCommonPrefix(String[] strs) {
+        String res = "";
+        if (strs.length==0) return res;
+        if (strs.length==1) return strs[0];
+        for (int i = 0; i < strs[0].length(); i++) {
+            int k=1;
+            while (k<strs.length){
+                try {
+                    if (strs[0].charAt(i)==strs[k].charAt(i)){
+                        if (k==strs.length-1){
+                            res += strs[0].charAt(i);
+                        }
+                    }else
+                        return res;
+                } catch (Exception e) {
+                    return res;
+                }
+                k++;
+            }
+        }
+        return res;
+    }
+
+    public String longestCommonPrefix2(String[] strs) {
+        if(strs.length==0)return "";
+        //公共前缀比所有字符串都短，随便选一个先
+        String s=strs[0];
+        for (String string : strs) {
+            while(!string.startsWith(s)){
+                if(s.length()==0)return "";
+                //公共前缀不匹配就让它变短！
+                s=s.substring(0,s.length()-1);
+            }
+        }
+        return s;
+    }
 
 
 }
