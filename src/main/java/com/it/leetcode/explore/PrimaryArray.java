@@ -705,7 +705,7 @@ public class PrimaryArray {
         if (l2==null) return l1;
 
         if (l1.val<l2.val){
-            l1.next  = mergeTwoLists(l1.next, l2);
+            l1.next  = mergeTwoLists(l1.next, l2);//使用递归，看做mergeTwoLists(l1.next, l2)作为一个整体来考虑，已经将后面的节点排好序了，
             return l1;
         }else {
             l2.next = mergeTwoLists(l2.next,l1);
