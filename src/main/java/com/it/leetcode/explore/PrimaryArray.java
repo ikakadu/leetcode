@@ -3,8 +3,7 @@ package com.it.leetcode.explore;
 
 
 import java.util.*;
-
-import static javafx.scene.input.KeyCode.M;
+import java.util.stream.Collectors;
 
 /**
  * @Description: 初级算法  数组
@@ -77,9 +76,18 @@ public class PrimaryArray {
         ListNode l2 = new ListNode(1);
         l2.next = new ListNode(3);
         l2.next.next = new ListNode(4);
-        ListNode res = mergeTwoLists(l1, l2);
+//        ListNode res = mergeTwoLists(l1, l2);
 
 //        System.out.println(res);
+//        rotate(null);
+        String[] strs = new String[]{"flower","flow","flight"};
+//        String[] strs = new String[]{"ab", "a"};
+//        String[] strs = new String[]{};
+        System.out.println(longestCommonPrefix(strs));
+        ListNode res = addTwoNumbers(l1, l2);
+
+        System.out.println(res);
+
     }
     //第27题   双指针法
     public static int removeElement(int[] nums, int val) {
@@ -386,6 +394,28 @@ public class PrimaryArray {
 
 
     }
+
+    //两数相加
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int carry = 0;
+        ListNode root = new ListNode(0);
+        ListNode cursor = root;
+        while(l1!=null||l2!=null||carry!=0){
+            int l1Val = l1==null?0:l1.val;
+            int l2Val = l2==null?0:l2.val;
+            int sumVal = l1Val+l2Val+carry;
+            carry = sumVal/10;
+            ListNode sumNode = new ListNode(sumVal%10);
+            cursor.next =sumNode;
+            cursor = sumNode;//光标后移
+
+            if (l1!=null) l1 = l1.next;
+            if (l2!=null) l2 = l2.next;
+        }
+        return root.next;
+    }
+
+
 
     //9. 回文数
     public static boolean isPalindrome(int x) {
@@ -697,6 +727,28 @@ public class PrimaryArray {
         return s;
     }
 
+    //最长公共前缀
+    public static String longestCommonPrefix3(String[] strs) {
+        if (strs == null ||strs.length==0){
+            return "";
+        }else if (strs.length==1){
+            return strs[0];
+        }
+        ArrayList<Integer> list = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < strs.length; i++) {
+            list.add(strs[i].length());
+        }
+        int minLength = list.size()>0?list.stream().sorted().collect(Collectors.toList()).get(0):0;
+        for (int i = 0; i < minLength; i++) {
+            for (int j = 0; j < strs.length-1; j++) {
+                if (strs[j].charAt(i)==strs[j+1].charAt(i)){
+                    sb.append(strs[0].charAt(i));
+                }
+            }
+        }
+        return sb.toString();
+    }
 
 
     //21. 合并两个有序链表

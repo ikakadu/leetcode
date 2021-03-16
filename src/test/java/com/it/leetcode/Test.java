@@ -5,6 +5,7 @@ import com.it.leetcode.explore.MchtCenEnum;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import static com.it.leetcode.explore.MchtCenEnum.MchtInfEntityType;
 
@@ -15,6 +16,21 @@ import static com.it.leetcode.explore.MchtCenEnum.MchtInfEntityType;
  **/
 public class Test {
 
+    @org.junit.Test
+    public void Test() {
+        int firstChar= 'a';
+        System.out.println(firstChar);
+    }
+    @org.junit.Test
+    public void stackTest() {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        Integer pop = stack.pop();
+        System.out.println(pop);
+    }
     @org.junit.Test
     public void xorTest() {
         int a = 7;
