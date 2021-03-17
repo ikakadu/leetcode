@@ -83,9 +83,9 @@ public class PrimaryArray {
         String[] strs = new String[]{"flower","flow","flight"};
 //        String[] strs = new String[]{"ab", "a"};
 //        String[] strs = new String[]{};
-        System.out.println(longestCommonPrefix(strs));
-        ListNode res = addTwoNumbers(l1, l2);
-
+//        System.out.println(longestCommonPrefix(strs));
+//        ListNode res = addTwoNumbers(l1, l2);
+        int[][] res = generateMatrix(4);
         System.out.println(res);
 
     }
@@ -764,6 +764,45 @@ public class PrimaryArray {
             return l2;
         }
 
+    }
+
+    public static int[][] generateMatrix(int n) {
+        int[][] res = new int[n][n];
+        int x =1;
+        int i = 0;
+        int k = 0;
+        while (x<=n*n){
+
+            while (k<n&&k>=0&&res[i][k]==0){//向右走
+                res[i][k] = x;
+                x++;
+                k++;
+            }
+            k--;
+            i++;
+            while (i<n&&i>=0&&res[i][k]==0){//向下走
+                res[i][k] = x;
+                x++;
+                i++;
+            }
+            i--;
+            k--;
+            while (k<n&&k>=0&&res[i][k]==0){//向左走
+                res[i][k] = x;
+                x++;
+                k--;
+            }
+            k++;
+            i--;
+            while (i<n&&i>=0&&res[i][k]==0){//向上走
+                res[i][k] = x;
+                x++;
+                i--;
+            }
+            i++;
+            k++;
+        }
+        return res;
     }
 
 }
