@@ -179,4 +179,28 @@ public class NowCoder {
         }
     }
 
-}
+    /**
+     * 牛家村的货币是一种很神奇的连续货币。
+     * 输入格式
+     * 共一行，包含两个整数n和m，分别表示货币的最大面额以及商品的价格。
+     *
+     * 简单的贪心算法
+     * @param n
+     * @param m
+     */
+    private static void coinMinNum(int n,int m) {
+        if (n>=m){
+            System.out.println("需要最少硬币数量：1");
+        }else {
+            if (m%n==0){
+                System.out.println("需要最少硬币数量："+m/n);//刚好整除
+            }else {
+                System.out.println("需要最少硬币数量："+m/n+1);// m-n(m/n),剩余的值小于n，就对应1个硬币。从最大面值硬币先取
+            }
+        }
+
+
+    }
+
+
+    }
