@@ -130,7 +130,14 @@ public class NowCoder {
         return false;
     }
 
-    //气球游戏
+
+    /**
+     * 【气球游戏】小Q在进行射击气球的游戏，
+     * https://blog.csdn.net/wwxy1995/article/details/88952924
+     * @param n
+     * @param m
+     * @param arr
+     */
     private static void extracted(int n,int m,int[] arr) {
 
         System.out.println("Hello World!");
