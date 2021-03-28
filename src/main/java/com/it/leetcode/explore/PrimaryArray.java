@@ -376,6 +376,20 @@ public class PrimaryArray {
         throw new IllegalArgumentException("No two sum solution");
     }
 
+    //两数之和  下标是从1开始的
+    public static int[] twoSum2(int[] numbers, int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<numbers.length;i++){
+            int c = target - numbers[i];
+            if(map.containsKey(c)){
+                return new int[]{map.get(c),i+1};
+            }
+            map.put(numbers[i],i+1);
+
+        }
+        throw new IllegalArgumentException("No two sum solution");
+    }
+
     //旋转图像
 
     public static void rotate(int[][] matrix) {

@@ -1,5 +1,6 @@
 package com.it.leetcode.explore;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class NowCoder {
@@ -7,10 +8,11 @@ public class NowCoder {
         ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);
         l1.next.next = new ListNode(4);
-        ListNode res = ReverseList2(l1);
+        ListNode res = ReverseList3(l1);
         System.out.println(res);
     }
 
+    //反转链表
     public static ListNode ReverseList(ListNode head) {
         Stack<ListNode> stack = new Stack();
         while (head!=null){
@@ -63,4 +65,118 @@ public class NowCoder {
         //直接输出pre就是我们想要得到的反转后的链表
         return pre;
     }
+
+
+    public static ListNode ReverseList3(ListNode head) {
+        if (head == null)
+            return null;
+
+        Stack<ListNode> stack = new Stack<ListNode>();
+        ListNode temp = head;
+        do {
+            stack.push(temp);
+            temp = temp.next;
+        } while (temp != null);
+
+        //关键在于这里，原来的头结点的next要置为空，否则导致遍历时无限循环
+        head.next = null;
+
+        ListNode root = stack.pop();
+        ListNode node = root;
+        while (!stack.isEmpty()) {
+            node.next = stack.pop();
+            node = node.next;
+        }
+        return root;
+    }
+
+    //每k个翻转
+
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        if(head == null || head.next == null || k < 2) return head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy, cur = head, temp;
+        int len = 0;
+        while (head != null) {
+            len ++ ;
+            head = head.next;
+        }
+        for (int i = 0; i < len / k; i ++ ) {
+            for (int j = 1; j < k; j ++ ) {
+                temp = cur.next;
+                cur.next = temp.next;
+                temp.next = pre.next;
+                pre.next = temp;
+            }
+            pre = cur;
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
+
+    //判断给定的链表中是否有环
+    public boolean hasCycle(ListNode head) {
+        ListNode p1 = head;
+        ListNode p2 = head;
+
+        while (p2!=null && p2.next!=null){
+            p1 = p1.next;
+            p2 = p2.next.next;
+            if (p1==p2){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //气球游戏
+    private static void extracted(int n,int m,int[] arr) {
+
+        System.out.println("Hello World!");
+
+        int N = 1000010, M = 2010;
+
+
+        Scanner in = new Scanner(System.in);
+//        int n = in.nextInt();//子弹数目
+//        int m = in.nextInt();//颜色数目
+//        int[] arr = new int[n];
+        int[] mp = new int[m+1];
+
+        boolean flag = false;
+        int res = n + 1;
+        int colors = 0;
+        int j = 0;//  j是前一个指针
+        // i是后一个指针
+
+
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = in.nextInt();
+//        }
+
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i]>0 && mp[arr[i]]==0)
+                colors++;
+            mp[arr[i]]++;
+
+            if (colors == m) {
+                flag = true;
+                while (arr[j] == 0 || mp[arr[j]] > 1) {
+                    mp[arr[j]]--;
+                    j++;
+                }
+
+                res = (i - j + 1 > res ? res : i - j + 1);
+            }
+
+        }
+        if (flag){
+            System.out.println("res:"+res);
+        }else {
+            System.out.println(-1);
+        }
+    }
+
 }
