@@ -31,8 +31,8 @@ public class PrimaryArray {
 //        list.add(2);
 //        List<Integer> integers = removeElement1(list, 2);
 //        System.out.println(integers);
-//        int[] nums = new int[]{1,2,3,4,5,6,7};
-//        System.out.println(maxProfit(nums));
+        int[] nums = new int[]{7,1,5,3,6,4};
+        System.out.println(maxProfit1(nums));
 //        System.out.println(maxProfit1(nums));
 //        rotate(nums,3);
 //        boolean b = containsDuplicate1(nums);
@@ -69,24 +69,24 @@ public class PrimaryArray {
 //        int res = romanToInt("MIX");
 //        String res = longestCommonPrefix(new String[]{"flower", "flow", "flight"});
 //        String res = intToRoman(58);
-        ListNode l1 = new ListNode(1);
+       /* ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);
         l1.next.next = new ListNode(4);
 
         ListNode l2 = new ListNode(1);
         l2.next = new ListNode(3);
-        l2.next.next = new ListNode(4);
+        l2.next.next = new ListNode(4);*/
 //        ListNode res = mergeTwoLists(l1, l2);
 
 //        System.out.println(res);
 //        rotate(null);
-        String[] strs = new String[]{"flower","flow","flight"};
+//        String[] strs = new String[]{"flower","flow","flight"};
 //        String[] strs = new String[]{"ab", "a"};
 //        String[] strs = new String[]{};
 //        System.out.println(longestCommonPrefix(strs));
 //        ListNode res = addTwoNumbers(l1, l2);
-        int[][] res = generateMatrix(4);
-        System.out.println(res);
+//        int[][] res = generateMatrix(4);
+//        System.out.println(res);
 
     }
     //第27题   双指针法
@@ -166,6 +166,22 @@ public class PrimaryArray {
         }
         return profit;
     }
+
+    //121. 买卖股票的最佳时机
+    public static int maxProfit2(int[] prices) {
+        if (prices==null||prices.length<=1)
+            return 0;
+        int min = prices[0];
+        int maxPro = 0;
+        for (int i = 1; i < prices.length; i++) {
+            maxPro = (prices[i]-min)>maxPro?(prices[i]-min):maxPro;
+            if (min>prices[i]){
+                min = prices[i];
+            }
+        }
+        return maxPro;
+    }
+
     //189.旋转数组  给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
     public static void rotate(int[] nums, int k) {
         for (int i = 0; i < k; i++) {
@@ -818,5 +834,6 @@ public class PrimaryArray {
         }
         return res;
     }
+
 
 }
